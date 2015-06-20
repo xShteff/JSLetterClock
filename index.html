@@ -49,13 +49,19 @@
             $('tr:nth-child(' + realX +') td:nth-child(' + realY + ')').css('color', 'red');
         }
 
+        var highlightLine = function(x, start, end) {
+            while(start <= end) {
+                highlightChar(x, start);
+                start++;
+            }
+        }
+
         var findKeyword = function(keyword) {
             var goal = keyword.length;
             var matched = 0;
             var x = 0;
             var y = 0;
             while(x < clockTwoD.length) {
-                console.log(x);
                 while(y < clockTwoD[x].length) {
                     if(keyword.charAt(0) == clockTwoD[x][y]){
                         matched++;
@@ -68,10 +74,10 @@
                                 matched = 0;
                             }
                             if(goal == matched){
-                                return 'yay';
+                                highlightLine(x, y - keyword.length + 1,y);
+                                return true;
                             }
                         }
-
                     } else {
                         matched = 0;
                         y++;
@@ -81,7 +87,7 @@
                 y = 0;
             }
 
-            return 'boo';
+            return false;
         }
 
         var updateTime = function() {
