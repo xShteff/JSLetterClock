@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <style>
         td {
-            padding:5px;
+            padding: 5px;
             text-align: center;
         }
     </style>
@@ -25,16 +25,16 @@
         var keywords = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'it', 'is', 'quarter', 'half', 'past', 'to', 'oclock'];
 
 
-        var clockTwoD = []; 
+        var clockTwoD = [];
         var letterCount = 0;
         var rowCount = 0;
         var colCount = 0;
 
-        for(var x = 0; x < 10; x++){
+        for (var x = 0; x < 10; x++) {
             var temp = [];
             $('#clock').append('<tr id="row-' + rowCount + '""></tr>');
-            for(var y = 0; y < 11; y++) {
-                $('#row-' + rowCount).append('<td id="col-'+ colCount + '">' + clock.charAt(letterCount).toUpperCase() + '</td>');
+            for (var y = 0; y < 11; y++) {
+                $('#row-' + rowCount).append('<td id="col-' + colCount + '">' + clock.charAt(letterCount).toUpperCase() + '</td>');
                 temp.push(clock.charAt(letterCount));
                 letterCount++;
                 colCount++;
@@ -46,11 +46,11 @@
         var highlightChar = function(x, y) {
             var realX = x + 1;
             var realY = y + 1;
-            $('tr:nth-child(' + realX +') td:nth-child(' + realY + ')').css('color', 'red');
+            $('tr:nth-child(' + realX + ') td:nth-child(' + realY + ')').css('color', 'red');
         }
 
         var highlightLine = function(x, start, end) {
-            while(start <= end) {
+            while (start <= end) {
                 highlightChar(x, start);
                 start++;
             }
@@ -61,20 +61,20 @@
             var matched = 0;
             var x = 0;
             var y = 0;
-            while(x < clockTwoD.length) {
-                while(y < clockTwoD[x].length) {
-                    if(keyword.charAt(0) == clockTwoD[x][y]){
+            while (x < clockTwoD.length) {
+                while (y < clockTwoD[x].length) {
+                    if (keyword.charAt(0) == clockTwoD[x][y]) {
                         matched++;
-                        for(var i = 1; i < goal; i++) {
+                        for (var i = 1; i < goal; i++) {
                             y++;
-                            if(keyword.charAt(i) == clockTwoD[x][y]) {
+                            if (keyword.charAt(i) == clockTwoD[x][y]) {
                                 matched++;
                             } else {
                                 i = goal;
                                 matched = 0;
                             }
-                            if(goal == matched){
-                                highlightLine(x, y - keyword.length + 1,y);
+                            if (goal == matched) {
+                                highlightLine(x, y - keyword.length + 1, y);
                                 return true;
                             }
                         }
@@ -86,15 +86,19 @@
                 x++;
                 y = 0;
             }
-
             return false;
         }
 
+        var highlightPhrase = function() {
+            for (var i = 0; i < arguments.length; i++) {
+                findKeyword(arguments[i]);
+            }
+        }
         var updateTime = function() {
             var currentDate = new Date();
             $('#time').text(currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds());
         }
-        var timer = setInterval(updateTime,1000);
+        var timer = setInterval(updateTime, 1000);
     </script>
 </body>
 
