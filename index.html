@@ -153,7 +153,10 @@
 
         var hoursToKeyword = function() {
             updateTime();
-            return hours[getHours() % 12].toUpperCase();
+            if(getMinutes() > 32)
+                return hours[(getHours() + 1) % 12].toUpperCase();
+            else
+                return hours[getHours() % 12].toUpperCase();
         }
 
         var highlightCurrentDate = function() {
