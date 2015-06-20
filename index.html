@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Time Thingy</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <style>
+        td {
+            padding:5px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="clock"></table>
+    <script>
+        var clock = "itlisasampmacquarterdctwentyfivexhalfstenftopasterunineonesixthreefourfivetwoeightelevenseventwelvetenseoclock";
+        var letterCount = 0;
+        var rowCount = 0;
+        var colCount = 0;
+        for(var x = 0; x < 10; x++){
+            $('#clock').append('<tr id="row-' + rowCount + '""></tr>');
+            for(var y = 0; y < 11; y++) {
+                $('#row-' + rowCount).append('<td id="col-'+ colCount + '">' + clock.charAt(letterCount).toUpperCase() + '</td>');
+                letterCount++;
+                colCount++;
+            }
+            rowCount++;
+        }
+    </script>
+</body>
+
+</html>
